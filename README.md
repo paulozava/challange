@@ -62,11 +62,11 @@
 
 ## TODO
 
-- [] Create a database:
-  - [] Create table hello with the fields:
-    - [] ULID?
-    - [] username
-    - [] date_of_birth
+- [x] Create a local database:
+  - [x] Create table hello with the fields:
+    - [x] id
+    - [x] username
+    - [x] dateOfBirth
 - [] Create a FastAPI app with the endpoints:
   - [] PUT /hello/<username>
     - [] Evaluate put request
@@ -98,6 +98,8 @@
   - [] Create a Lambda function
   - [] Create a self-signed certificate to allow https
   - [] Create an ALB to expose the Lambda function
+- [] Deploy the application to AWS
 - [] Create a system diagram
+- [] Write documentation about how to use the code
 - [] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
 

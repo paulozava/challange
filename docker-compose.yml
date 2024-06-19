@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:13.3
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pantera!!!
+      POSTGRES_DB: hello
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/mock.sql:/docker-entrypoint-initdb.d/init.sql
