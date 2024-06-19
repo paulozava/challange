@@ -1,4 +1,3 @@
-DROP SCHEMA IF EXISTS hello CASCADE;
 CREATE SCHEMA hello;
 CREATE table IF NOT EXISTS hello.usernames(
    id SERIAL PRIMARY KEY,
