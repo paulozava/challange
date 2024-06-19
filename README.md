@@ -7,7 +7,7 @@
 
     ```
     Description: Saves/updates the given user’s name and date of birth in the database.
-    Request: PUT /hello/<username> { “dateOfBirth”: “YYYY-MM-DD” }
+    Request: PUT /hello/<username> { "dateOfBirth": "YYYY-MM-DD" }
     Response: 204 No Content
     ```
 
@@ -27,13 +27,13 @@
     A. If username’s birthday is in N days:
 
     ```json
-    { “message”: “Hello, <username>! Your birthday is in N day(s)”}
+    { "message": "Hello, <username>! Your birthday is in N day(s)" }
     ```
 
     B. If username’s birthday is today:
 
     ```json
-    { “message”: “Hello, <username>! Happy birthday!” }
+    { "message": "Hello, <username>! Happy birthday!" }
     ```
 
     Note: Use storage/database of your choice.
