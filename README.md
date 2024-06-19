@@ -26,16 +26,17 @@
     Response Examples:
     A. If username’s birthday is in N days:
 
-            ```json
-            { “message”: “Hello, <username>! Your birthday is in N day(s)”}
-            ```
+    ```json
+    { “message”: “Hello, <username>! Your birthday is in N day(s)”}
+    ```
 
-        B. If username’s birthday is today:
-            ```json
-            { “message”: “Hello, <username>! Happy birthday!” }
-            ```
+    B. If username’s birthday is today:
 
-        Note: Use storage/database of your choice.
+    ```json
+    { “message”: “Hello, <username>! Happy birthday!” }
+    ```
+
+    Note: Use storage/database of your choice.
 
 2.  Produce a system diagram of your solution deployed to either AWS or GCP (it's not required to support both cloud platforms).
 
