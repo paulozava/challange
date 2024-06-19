@@ -58,6 +58,7 @@
 - AWS
 - Lambda
 - ALB
+- 201 instead of 204 when user is created
 
 ## TODO
 
@@ -74,7 +75,8 @@
       - [] Validate date is before today
     - [] Save the user in the database
     - [] Return:
-      - [] 204 No Content if everything is ok
+      - [] 201 Created if the user is created
+      - [] 204 No Content if user is updated
       - [] 400 Bad Request if any validation fail with the error in the message
       - [] 500 Internal Server Error if save on the database fails
   - [] GET /hello/<username>
