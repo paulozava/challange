@@ -53,16 +53,49 @@
 - Python
 - FastAPI
 - Syncronous code
-- Terraform
+- Postgres
+- Terraform and local state
+- AWS
 - Lambda
+- ALB
 
 ## TODO
 
-- [x] Create a FastAPI app
+- [] Create a database:
+  - [] Create table hello with the fields:
+    - [] ULID?
+    - [] username
+    - [] date_of_birth
+- [] Create a FastAPI app with the endpoints:
+  - [] PUT /hello/<username>
+    - [] Evaluate put request
+      - [] Validate username is only letters
+      - [] Validate the date format is valid
+      - [] Validate date is before today
+    - [] Save the user in the database
+    - [] Return:
+      - [] 204 No Content if everything is ok
+      - [] 400 Bad Request if any validation fail with the error in the message
+      - [] 500 Internal Server Error if save on the database fails
+  - [] GET /hello/<username>
+    - [] Evaluate get request username is only letters
+    - [] Get the user from the database
+    - [] Return:
+      - [] 200 OK with the message:
+        - [] "Hello, <username>! Your birthday is in N day(s)" if the birthday is not today
+        - [] "Hello, <username>! Happy birthday!" if the birthday is today
+      - [] 404 Not Found if the user is not found
+      - [] 500 Internal Server Error if get on the database fails
 - [] Create a Dockerfile
 - [] Create a docker-compose file
 - [] Local tests
-- [] Integration tests with testcontainers
-- [] Create a Lambda function
-- [] Create a Terraform script to deploy the Lambda function
+  - [] Unit tests
+  - [] Integration tests with testcontainers
+- [] Create the infrastructure
+  - [] Create a Postgres database on AWS RDS
+  - [] Create a Lambda function
+  - [] Create a self-signed certificate to allow https
+  - [] Create an ALB to expose the Lambda function
+- [] Create a system diagram
+- [] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
 
