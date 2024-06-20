@@ -1,7 +1,7 @@
 CREATE SCHEMA hello;
 CREATE table IF NOT EXISTS hello.usernames(
    id SERIAL PRIMARY KEY,
-   username VARCHAR(200) NOT NULL,
+   username TEXT NOT NULL UNIQUE,
    dateOfBirth DATE NOT NULL
 );
 
