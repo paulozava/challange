@@ -55,6 +55,7 @@
 - Syncronous code
 - Postgres
 - Secrets on environment variables
+- Accepted date format: YYYY-MM-DD
 - Terraform and local state
 - AWS
 - Lambda
@@ -74,8 +75,8 @@
   - [] PUT /hello/<username>
     - [] Evaluate put request
       - [] Validate username is only letters
-      - [] Validate the date format is valid
-      - [] Validate date is before today
+      - [x] Validate the date format is valid
+      - [x] Validate date is before today
     - [] Save the user in the database
     - [] Return:
       - [] 201 Created if the user is created
