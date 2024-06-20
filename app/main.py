@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, Path
 
 from app.databases import get_db_connection
 from app.date_of_birth_model import DateOfBirth
+from app.username_model import Username
 
 app = FastAPI()
 
@@ -23,7 +24,17 @@ def get_hello(username: str):
 
 
 @app.put("/hello/{username}")
-def put_hello(username: str, dateOfBirth: Annotated[DateOfBirth, Body(embed=False)]):
+def put_hello(
+    username: Annotated[
+        str,
+        Path(
+            title="Username of the user",
+            description="The username of the user",
+            pattern="^[a-zA-Z]+$",
+        ),
+    ],
+    dateOfBirth: Annotated[DateOfBirth, Body(embed=False)],
+):
     # with get_db_connection() as conn:
     #     with conn.cursor() as cur:
     #         cur.execute(
