@@ -54,6 +54,7 @@
 - FastAPI
 - Syncronous code
 - Postgres
+- Secrets on environment variables
 - Terraform and local state
 - AWS
 - Lambda
@@ -67,6 +68,8 @@
     - [x] id
     - [x] username
     - [x] dateOfBirth
+  - [x] Create a connection pool
+  - [] Bootstrap database when schema is not available
 - [] Create a FastAPI app with the endpoints:
   - [] PUT /hello/<username>
     - [] Evaluate put request
