@@ -9,12 +9,7 @@ from app.models import DateOfBirth
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return "Good morninig Vietnam!"
-
-
-@app.get("/hello/-/all")
+@app.get("/-/all")
 def get_all_users():
     with get_db_connection() as conn:
         with conn.cursor() as cur:
@@ -23,9 +18,9 @@ def get_all_users():
     return {"users": user}
 
 
-@app.get("/hello/-/health")
+@app.get("/-/health")
 def get_health():
-    return {"status": "OK"}
+    return {"status": "ok"}
 
 
 @app.get("/hello/{username}")
