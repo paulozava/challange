@@ -56,6 +56,7 @@
 - Postgres
 - Username will be case sensitive
 - Username will allow only ASCII letters
+- Username have max 100 characters
 - Secrets on environment variables
 - Accepted date format: YYYY-MM-DD
 - Terraform and local state

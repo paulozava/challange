@@ -73,6 +73,11 @@ def put_hello(
     ],
     dateOfBirth: Annotated[DateOfBirth, Body(embed=False)],
 ):
+    if len(username) > 100:
+        raise HTTPException(
+            status_code=422,
+            detail="Username should have at most 100 characters",
+        )
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
