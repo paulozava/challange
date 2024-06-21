@@ -54,13 +54,13 @@
 - FastAPI
 - Syncronous code
 - Postgres
+- Username will be case sensitive
 - Secrets on environment variables
 - Accepted date format: YYYY-MM-DD
 - Terraform and local state
 - AWS
 - Lambda
 - ALB
-- 201 instead of 204 when user is created
 
 ## TODO
 
@@ -80,17 +80,17 @@
     - [x] Save the user in the database
     - [x] Return:
       - [x] 204 No Content if user is created/updated
-      - [?] 422 Bad Request if any validation fail with the error in the message
+      - [?] 400 Bad Request if any validation fail with the error in the message
       - [x] 500 Internal Server Error if save on the database fails
-  - [] GET /hello/<username>
-    - [] Evaluate get request username is only letters
-    - [] Get the user from the database
-    - [] Return:
-      - [] 200 OK with the message:
-        - [] "Hello, <username>! Your birthday is in N day(s)" if the birthday is not today
-        - [] "Hello, <username>! Happy birthday!" if the birthday is today
-      - [] 404 Not Found if the user is not found
-      - [] 500 Internal Server Error if get on the database fails
+  - [x] GET /hello/<username>
+    - [x] Evaluate get request username is only letters
+    - [x] Get the user from the database
+    - [x] Return:
+      - [x] 200 OK with the message:
+        - [x] "Hello, <username>! Your birthday is in N day(s)" if the birthday is not today
+        - [x] "Hello, <username>! Happy birthday!" if the birthday is today
+      - [x] 404 Not Found if the user is not found
+      - [x] 500 Internal Server Error if get on the database fails
 - [x] Create a Dockerfile
 - [x] Create a docker-compose file
 - [] Local tests
