@@ -92,8 +92,8 @@
         - [] "Hello, <username>! Happy birthday!" if the birthday is today
       - [] 404 Not Found if the user is not found
       - [] 500 Internal Server Error if get on the database fails
-- [] Create a Dockerfile
-- [] Create a docker-compose file
+- [x] Create a Dockerfile
+- [x] Create a docker-compose file
 - [] Local tests
   - [] Unit tests
   - [] Integration tests with testcontainers
@@ -106,4 +106,3 @@
 - [] Create a system diagram
 - [] Write documentation about how to use the code
 - [] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
-

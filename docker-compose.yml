@@ -1,4 +1,22 @@
 services:
+  api:
+    build: .
+    container_name: api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - ./app:/app
+    develop:
+      watch:
+        - action: rebuild
+          path: Pipfile
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: docker-compose.yaml
   postgres:
     image: postgres:13.3
     container_name: postgres
