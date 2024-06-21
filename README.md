@@ -57,6 +57,7 @@
 - Username will be case sensitive: I choose to make the username case sensitive, that means that "John" and "john" are different users. The requirements do not specify that the username should be case insensitive.
 - Username will allow only ASCII letters: For simplicity I choose to allow only ASCII letters in the username.
 - Username have max 100 characters: Same as above, for simplicity I choose to limit the username to 100 characters.
+- Get message with the number of days: I choose to pluralize the message intead of use the "day(s)" so it will be more readable for the user.
 - Secrets on environment variables
 - Terraform and local state
 - AWS
@@ -72,7 +73,7 @@
     - [x] dateOfBirth
   - [x] Create a connection pool
   - [] Bootstrap database when schema is not available
-- [] Create a FastAPI app with the endpoints:
+- [x] Create a FastAPI app with the endpoints:
   - [x] PUT /hello/<username>
     - [x] Evaluate put request
       - [x] Validate username is only letters
