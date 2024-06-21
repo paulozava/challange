@@ -58,7 +58,6 @@
 - Username will allow only ASCII letters
 - Username have max 100 characters
 - Secrets on environment variables
-- Accepted date format: YYYY-MM-DD
 - Terraform and local state
 - AWS
 - Lambda
@@ -95,9 +94,7 @@
       - [x] 500 Internal Server Error if get on the database fails
 - [x] Create a Dockerfile
 - [x] Create a docker-compose file
-- [] Local tests
-  - [] Unit tests
-  - [] Integration tests with testcontainers
+- [x] Local tests
 - [] Create the infrastructure
   - [] Create a Postgres database on AWS RDS
   - [] Create a Lambda function

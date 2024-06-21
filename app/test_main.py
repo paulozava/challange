@@ -189,5 +189,32 @@ def test_put_username_big100():
 # - date without the correct format
 # - date with emoji
 # - date of date bigger than today
-# - date of a date with year less than 1000
 # - date of a date with year less than 9999
+def test_put_dateOfBirth():
+    expected_staus_code = 422
+    test_cases = [
+        ("".join(choices(ascii_letters, k=randrange(100, 10000))), date(1990, 1, 1))
+        for _ in range(100)
+    ]
+    test_cases = [
+        ("John", ""),
+        ("John", "1990-01-01!"),
+        ("John", "01-01-1990"),
+        ("John", "1-1-1990"),
+        ("John", "1990/01/01"),
+        ("John", "🎉"),
+        ("John", "990-01-01"),
+        ("John", "10000-01-01"),
+        ("John", "9999-01-01"),
+        ("John", date.today().strftime("%Y-%m-%d")),
+    ]
+
+    for username, date_of_birth in test_cases:
+        response = client.put(
+            f"/hello/{username}",
+            json={"dateOfBirth": date_of_birth},
+        )
+        status_code = response.status_code
+        assert status_code == expected_staus_code, ERROR_MSG.format(
+            date_of_birth, expected_staus_code, status_code
+        )
