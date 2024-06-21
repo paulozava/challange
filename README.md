@@ -72,17 +72,16 @@
   - [x] Create a connection pool
   - [] Bootstrap database when schema is not available
 - [] Create a FastAPI app with the endpoints:
-  - [] PUT /hello/<username>
-    - [] Evaluate put request
-      - [] Validate username is only letters
+  - [x] PUT /hello/<username>
+    - [x] Evaluate put request
+      - [x] Validate username is only letters
       - [x] Validate the date format is valid
       - [x] Validate date is before today
-    - [] Save the user in the database
-    - [] Return:
-      - [] 201 Created if the user is created
-      - [] 204 No Content if user is updated
-      - [] 400 Bad Request if any validation fail with the error in the message
-      - [] 500 Internal Server Error if save on the database fails
+    - [x] Save the user in the database
+    - [x] Return:
+      - [x] 204 No Content if user is created/updated
+      - [?] 422 Bad Request if any validation fail with the error in the message
+      - [x] 500 Internal Server Error if save on the database fails
   - [] GET /hello/<username>
     - [] Evaluate get request username is only letters
     - [] Get the user from the database
