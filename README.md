@@ -50,13 +50,13 @@
 
 ## Decision log
 
-- Python
-- FastAPI
-- Syncronous code
-- Postgres
-- Username will be case sensitive
-- Username will allow only ASCII letters
-- Username have max 100 characters
+- Python: Python is a common langue nowdays, so common that every SRE/DevOps know at least the basics of it, so it will be easier to improve and maintain the code.
+- FastAPI: FastAPI is a modern web framework for building APIs with Python. With it I expect to create the api with production level very fast, with logging and testing.
+- Syncronous code: I choose to use syncronous code to make the code easier to understand and maintain.
+- Postgres: I choose to use Postgres because it is a common database, with good performance, easy to use and adopted by Revolut.
+- Username will be case sensitive: I choose to make the username case sensitive, that means that "John" and "john" are different users. The requirements do not specify that the username should be case insensitive.
+- Username will allow only ASCII letters: For simplicity I choose to allow only ASCII letters in the username.
+- Username have max 100 characters: Same as above, for simplicity I choose to limit the username to 100 characters.
 - Secrets on environment variables
 - Terraform and local state
 - AWS
