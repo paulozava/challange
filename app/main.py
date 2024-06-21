@@ -3,8 +3,7 @@ from typing import Annotated
 from fastapi import Body, FastAPI, Path
 
 from app.databases import get_db_connection
-from app.date_of_birth_model import DateOfBirth
-from app.username_model import Username
+from app.models import DateOfBirth
 
 app = FastAPI()
 
