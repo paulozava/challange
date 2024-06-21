@@ -9,7 +9,6 @@ services:
       - postgres
     volumes:
       - ./app:/app
-    command: ["fastapi", "dev", "main.py", "--port", "8080"]
     develop:
       watch:
         - action: rebuild
