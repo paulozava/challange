@@ -55,6 +55,7 @@
 - Syncronous code
 - Postgres
 - Username will be case sensitive
+- Username will allow only ASCII letters
 - Secrets on environment variables
 - Accepted date format: YYYY-MM-DD
 - Terraform and local state

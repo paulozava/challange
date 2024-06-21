@@ -7,6 +7,11 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+    environment:
+      APP_DB_HOST: postgres
+      APP_DB_USER: root
+      APP_DB_PASSWORD: pantera!!!
+      APP_DB_NAME: hello
     volumes:
       - ./app:/app
     command:

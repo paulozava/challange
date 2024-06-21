@@ -42,7 +42,7 @@ def get_hello(
             )
             user = cur.fetchall()
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail=f"User {username} not found")
     elif len(user) > 1:
         raise HTTPException(
             status_code=418,
