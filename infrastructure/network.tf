@@ -27,7 +27,6 @@ resource "aws_vpc" "main" {
 }
 
 ## Subnets
-
 resource "aws_subnet" "dmz-public" {
   for_each = {
     for az in local.azs : az => cidrsubnet(local.azs_ranges["dmz-public"], length(local.azs), index(local.azs, az))
@@ -68,6 +67,14 @@ resource "aws_subnet" "backend-private" {
   }
 }
 
+## Internet Gateway
+resource "aws_internet_gateway" "dmz-public" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.name}-igw"
+  }
+}
 
 ## NAT Gateway
 resource "aws_eip" "nat" {
@@ -86,6 +93,24 @@ resource "aws_nat_gateway" "nat" {
 }
 
 ## Route tables
+resource "aws_route_table" "dmz-public" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.dmz-public.id
+  }
+
+  tags = {
+    Name = "${var.name}-dmz-public"
+  }
+}
+
+resource "aws_route_table_association" "dmz-public" {
+  for_each       = aws_subnet.dmz-public
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.dmz-public.id
+}
+
 resource "aws_route_table" "frontend-private" {
   for_each = aws_subnet.frontend-private
   vpc_id   = aws_vpc.main.id
