@@ -40,7 +40,9 @@ services:
     command:
       - /bin/bash
       - -c
-      - pytest -vv ./test
+      - |
+        pytest -vv ./test
+        sleep 1000000
     develop:
       watch:
         - action: sync+restart
