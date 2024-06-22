@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 infrastructure/.terraform/providers/registry.terraform.io/hashicorp
 infrastructure/.terraform/providers/registry.terraform.io/hashicorp
+infrastructure/.terraform.lock.hcl
