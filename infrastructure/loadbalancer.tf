@@ -3,7 +3,7 @@
 ######################################################
 
 ## Security Group for Load Balancer
-resource "aws_security_group" "webappserver-lb" {
+resource "aws_security_group" "app-lb" {
   vpc_id      = aws_vpc.main.id
   name        = "${var.name}-lb-sg"
   description = "lb sg that allows http/https from anywhere and egress all traffic"
@@ -32,15 +32,15 @@ resource "aws_security_group" "webappserver-lb" {
 }
 
 ## Create a self-signed certificate
-resource "tls_private_key" "webappserver" {
+resource "tls_private_key" "app" {
   algorithm = "RSA"
 }
 
-resource "tls_self_signed_cert" "webappserver" {
-  private_key_pem = tls_private_key.webappserver.private_key_pem
+resource "tls_self_signed_cert" "app" {
+  private_key_pem = tls_private_key.app.private_key_pem
 
   subject {
-    common_name  = aws_lb.webappserver.dns_name
+    common_name  = aws_lb.app.dns_name
     organization = "YOUR WEB APP SERVER, Inc"
   }
 
@@ -54,26 +54,26 @@ resource "tls_self_signed_cert" "webappserver" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  private_key      = tls_private_key.webappserver.private_key_pem
-  certificate_body = tls_self_signed_cert.webappserver.cert_pem
+  private_key      = tls_private_key.app.private_key_pem
+  certificate_body = tls_self_signed_cert.app.cert_pem
 }
 
 ## Load Balancer
-resource "aws_lb" "webappserver" {
-  name                       = "${var.name}-webappserver-lb"
+resource "aws_lb" "app" {
+  name                       = "${var.name}-app-lb"
   internal                   = false
   load_balancer_type         = "application"
-  security_groups            = [aws_security_group.webappserver-lb.id]
+  security_groups            = [aws_security_group.app-lb.id]
   subnets                    = [for subnet in aws_subnet.dmz-public : subnet.id]
   enable_deletion_protection = false
   tags = {
-    Name = "${var.name}-webappserver-lb"
+    Name = "${var.name}-app-lb"
   }
 }
 
 ### Listener
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.webappserver.arn
+  load_balancer_arn = aws_lb.app.arn
   port              = "80"
   protocol          = "HTTP"
 
@@ -89,7 +89,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_lb_listener" "https" {
-  load_balancer_arn = aws_lb.webappserver.arn
+  load_balancer_arn = aws_lb.app.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
@@ -97,20 +97,20 @@ resource "aws_lb_listener" "https" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.webappserver-tg.arn
+    target_group_arn = aws_lb_target_group.app-tg.arn
   }
 }
 
 ### Target Group
-resource "aws_lb_target_group" "webappserver-tg" {
-  name        = "${var.name}-webappserver-tg"
+resource "aws_lb_target_group" "app-tg" {
+  name        = "${var.name}-app-tg"
   port        = 8080
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = aws_vpc.main.id
 
   health_check {
-    path                = "/"
+    path                = "/-/health"
     protocol            = "HTTP"
     port                = "8080"
     healthy_threshold   = 2
@@ -123,6 +123,6 @@ resource "aws_lb_target_group" "webappserver-tg" {
 
 ## Output
 output "access_your_site" {
-  value = aws_lb.webappserver.dns_name
+  value = aws_lb.app.dns_name
 }
 
