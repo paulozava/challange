@@ -163,3 +163,5 @@ cython_debug/
 infrastructure/.terraform/providers/registry.terraform.io/hashicorp
 infrastructure/.terraform/providers/registry.terraform.io/hashicorp
 infrastructure/.terraform.lock.hcl
+infrastructure/.terraform.tfstate.lock.info
+infrastructure/terraform.tfstate
