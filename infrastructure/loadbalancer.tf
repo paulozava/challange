@@ -97,28 +97,27 @@ resource "aws_lb_listener" "https" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.app-tg.arn
+    target_group_arn = aws_lb_target_group.tg-app.arn
   }
 }
 
 ### Target Group
-resource "aws_lb_target_group" "app-tg" {
+resource "aws_lb_target_group" "tg-app" {
   name        = "${var.name}-app-tg"
   port        = 8080
   protocol    = "HTTP"
-  target_type = "instance"
+  target_type = "ip"
   vpc_id      = aws_vpc.main.id
 
   health_check {
-    path                = "/-/health"
-    protocol            = "HTTP"
-    port                = "8080"
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    interval            = 30
-    matcher             = "200-299"
+    path    = "/-/health"
+    matcher = "200-299"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
 }
 
 ## Output
