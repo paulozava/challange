@@ -24,7 +24,7 @@ resource "awscc_ecr_repository" "app" {
   }
 
   lifecycle {
-    ignore_changes = [lifecycle_policy]
+    ignore_changes = all
   }
 }
 
