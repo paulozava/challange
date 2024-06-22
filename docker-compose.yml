@@ -46,7 +46,7 @@ services:
     develop:
       watch:
         - action: sync+restart
-          path: .
+          path: ./app
           target: /app
   postgres:
     image: postgres:13.3
