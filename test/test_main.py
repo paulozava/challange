@@ -1,3 +1,5 @@
+import os
+import sys
 from datetime import date
 from random import choices, randrange
 from string import ascii_letters
@@ -6,6 +8,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../app")))
 client = TestClient(app)
 
 ERROR_MSG = "Failed for {}, expected {} got {}"

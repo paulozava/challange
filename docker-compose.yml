@@ -24,6 +24,28 @@ services:
           path: Dockerfile
         - action: rebuild
           path: docker-compose.yaml
+  test:
+    build: .
+    container_name: test
+    depends_on:
+      - postgres
+      - api
+    environment:
+      APP_DB_HOST: postgres
+      APP_DB_USER: root
+      APP_DB_PASSWORD: pantera!!!
+      APP_DB_NAME: hello
+    volumes:
+      - ./test:/app/test
+    command:
+      - /bin/bash
+      - -c
+      - pytest -vv ./test
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app
   postgres:
     image: postgres:13.3
     container_name: postgres
