@@ -1,12 +1,20 @@
+from contextlib import asynccontextmanager
 from datetime import date
 from typing import Annotated
 
 from fastapi import Body, FastAPI, HTTPException, Path, status
 
-from app.databases import get_db_connection
+from app.databases import bootstrap_db, get_db_connection
 from app.models import DateOfBirth
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    bootstrap_db()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/-/all")
