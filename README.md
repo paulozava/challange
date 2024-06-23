@@ -59,8 +59,8 @@
 - Username have max 100 characters: Same as above, for simplicity I choose to limit the username to 100 characters.
 - Get message with the number of days: I choose to pluralize the message intead of use the "day(s)" so it will be more readable for the user.
 - Running tests on container: I choose to create a container to run the tests, however it is not in perfect stage during restart the test, I decide to keep this as is for now, probably if this was a production resource, it makes sense to expend more time on improving that.
-- Secrets on environment variables
 - Terraform and local state
+- ECR public repository
 - AWS
 - Lambda
 - ALB
