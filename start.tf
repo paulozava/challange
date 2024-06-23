@@ -43,5 +43,16 @@ resource "null_resource" "docker_build" {
 }
 
 output "app" {
-  value = module.infrastructure.access_your_site
+  value = <<-EOT
+How to access your site:
+
+To add an user:
+curl -X PUT -v -k https://${module.infrastructure.access_your_site}/hello/<username> -H "Content-Type: application/json" -d '{"dateOfBirth": "1990-01-01"}'
+
+To get the user:
+curl -v -k https://${module.infrastructure.access_your_site}/hello/<username>
+
+To get all usernames at database:
+curl -v -k https://${module.infrastructure.access_your_site}/-/all
+EOT
 }
