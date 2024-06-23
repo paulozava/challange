@@ -1,11 +1,9 @@
 variable "name" {
-  type    = string
-  default = "study"
+  type = string
 }
 
 variable "region" {
-  type    = string
-  default = "eu-west-1"
+  type = string
 }
 
 variable "image_version" {
