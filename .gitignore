@@ -167,3 +167,7 @@ infrastructure/.terraform.tfstate.lock.info
 infrastructure/terraform.tfstate
 infrastructure/terraform.tfstate.backup
 infrastructure/.terraform/modules
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
