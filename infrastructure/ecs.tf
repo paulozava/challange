@@ -48,8 +48,14 @@ module "ecs" {
             }
           ]
 
-          readonly_root_filesystem = false
+          environment = [
+            { name = "APP_DB_HOST", value = aws_rds_cluster.postgres.endpoint },
+            { name = "APP_DB_USER", value = var.app_db.user },
+            { name = "APP_DB_PASSWORD", value = var.app_db.password },
+            { name = "APP_DB_NAME", value = var.app_db.name },
+          ]
 
+          readonly_root_filesystem  = false
           enable_cloudwatch_logging = true
           memory_reservation        = 100
         }
