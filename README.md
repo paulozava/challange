@@ -50,24 +50,33 @@
 
 ## Decision log
 
-- Python: Python is a common langue nowdays, so common that every SRE/DevOps know at least the basics of it, so it will be easier to improve and maintain the code.
-- FastAPI: FastAPI is a modern web framework for building APIs with Python. With it I expect to create the api with production level very fast, with logging and testing.
-- Syncronous code: I choose to use syncronous code to make the code easier to understand and maintain.
-- Postgres: I choose to use Postgres because it is a common database, with good performance, easy to use and adopted by Revolut.
-- Username will be case sensitive: I choose to make the username case sensitive, that means that "John" and "john" are different users. The requirements do not specify that the username should be case insensitive.
-- Username will allow only ASCII letters: For simplicity I choose to allow only ASCII letters in the username.
-- Username have max 100 characters: Same as above, for simplicity I choose to limit the username to 100 characters.
-- Get message with the number of days: I choose to pluralize the message intead of use the "day(s)" so it will be more readable for the user.
-- Running tests on container: I choose to create a container to run the tests, however it is not in perfect stage during restart the test, I decide to keep this as is for now, probably if this was a production resource, it makes sense to expend more time on improving that.
-- AWS
-- Terraform and local state
-- ECR public repository
-- Aurora Postgres:
-  - I choose to use Aurora Postgres because it is a managed service, with good performance and scalability.
-  - I left the database with no delete protection, because it is a test environment, in production it should be enabled. The same for last backup.
-  - I use credentials in code just for convinience, in production it should be stored in a secret manager like AWS Secrets or Hashcorp Vault.
-- ECS
-- ALB
+- **Python**: Python is a common language nowadays, almost all SRE/DevOps professional knows at least the basics of it. This widespread familiarity will facilitate the improvement and maintenance of the code.
+
+- **FastAPI**: FastAPI is a modern web framework for building APIs with Python. With it, I expect to create a production-level API quickly, complete with logging and testing capabilities.
+
+- **PostgreSQL**: I chose PostgreSQL because it is a widely-used database known for its good performance and ease of use. Additionally, it is adopted by companies like Revolut.
+
+- **Case-sensitive Username**: I opted to make usernames case-sensitive, meaning "John" and "john" will be treated as different users. The requirements do not specify that usernames should be case-insensitive.
+
+- **ASCII-only Username**: For simplicity, I chose to allow only ASCII letters in usernames.
+
+- **Username Character Limit**: To keep things simple, I decided to limit usernames to 100 characters.
+
+- **Pluralized Message for Days**: I chose to pluralize the message for the number of days instead of using "day(s)" to make it more readable for users.
+
+- **Running Tests in a Container**: I decided to create a container to run the tests. Although the container setup is not perfect when restarting tests, I opted to keep it as is for now. If this were a production resource, it would make sense to spend more time improving it.
+
+- **AWS**: I chose AWS as the cloud provider because it is the one I have the most experience with.
+
+- **Terraform and Local State**: I used Terraform to create the Infrastructure as Code (IaC) resources. However, I kept the state local for convenience. In a production environment, the state should be stored remotely.
+
+- **Aurora PostgreSQL**:
+
+  - I chose Aurora PostgreSQL because it is a managed service with good performance and scalability.
+  - I left the database without delete protection since this is a test environment. In production, delete protection should be enabled, along with the latest backup features.
+  - I used hardcoded credentials for convenience, but in production, they should be stored in a secret manager like AWS Secrets Manager or HashiCorp Vault.
+
+- **ECS**: I chose ECS because it is a managed service with good performance and scalability. Additionally, it is easy to integrate with Application Load Balancer (ALB).
 
 ## TODO
 
@@ -101,12 +110,12 @@
 - [x] Create a Dockerfile
 - [x] Create a docker-compose file
 - [x] Local tests
-- [] Create the infrastructure
-  - [] Create a Postgres database on AWS RDS
-  - [] Create a Lambda function
-  - [] Create a self-signed certificate to allow https
-  - [] Create an ALB to expose the Lambda function
-- [] Deploy the application to AWS
+- [x] Create the infrastructure
+  - [x] Create a Postgres database on AWS RDS
+  - [x] Create a ECS cluster
+  - [x] Create a self-signed certificate to allow https
+  - [x] Create an ALB to expose the ECS function
+- [x] Deploy the application to AWS
 - [] Create a system diagram
 - [] Write documentation about how to use the code
 - [] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
