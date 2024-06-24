@@ -33,6 +33,7 @@ module "infrastructure" {
 }
 
 resource "null_resource" "docker_build" {
+  depends_on = [module.infrastructure]
   provisioner "local-exec" {
     command = <<-EOT
         docker login -u AWS -p $(aws ecr get-login-password --region ${var.region}) ${module.infrastructure.image_reg}
