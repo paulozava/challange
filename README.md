@@ -86,6 +86,8 @@ terraform apply
 
 ### System Diagram
 
+![Infra](https://github.com/paulozava/challange/blob/main/schema/schema.jpg "infrastructure schema")
+
 ### Decision log
 
 - **Python**: Python is a common language nowadays, almost all SRE/DevOps professional knows at least the basics of it. This widespread familiarity will facilitate the improvement and maintenance of the code.
@@ -156,6 +158,6 @@ terraform apply
   - [x] Create a self-signed certificate to allow https
   - [x] Create an ALB to expose the ECS function
 - [x] Deploy the application to AWS
-- [] Create a system diagram
-- [] Write documentation about how to use the code
-- [] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
+- [x] Create a system diagram
+- [x] Write documentation about how to use the code
+- [x] Write configuration scripts for building and no-downtime production deployment of this application, keeping in mind aspects that an SRE would have to consider.?
