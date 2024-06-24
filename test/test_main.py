@@ -14,16 +14,21 @@ ERROR_MSG = "Failed for {}, expected {} got {}"
 
 
 def test_health_path():
+    """Test the health path"""
     response = client.get("/-/health")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
 
+def test_all_path():
+    """Test the all path"""
+    response = client.get("/-/all")
+    assert response.status_code == 200
+
+
 # test for get username
-
-
-# receive a valid user - return 200
 def test_get_username_success_found():
+    """Test the get username path with valid users - return 200"""
     test_cases = [
         ("John", date(1990, 1, 1)),
         ("Mary", date(1990, 11, 1)),
@@ -44,8 +49,8 @@ def test_get_username_success_found():
             }
 
 
-# receive a user that was not put - return 404
 def test_get_username_valid_not_found():
+    """Test the get username path with valid users that were not put - return 404"""
     test_cases = [
         "john",
         "mAry",
@@ -71,6 +76,7 @@ def test_get_username_valid_not_found():
 # - string with numbers
 # - string with emoji
 def test_get_username_invalid():
+    """Test the get username path with invalid users - return 422"""
     expected_staus_code = 422
     expected_message = "String should match pattern '^[a-zA-Z]+$'"
     test_cases = [
@@ -102,6 +108,7 @@ def test_get_username_invalid():
 
 # receive a valid user and a valid date of birth - return 204
 def test_put_username_valid():
+    """Test the put username path with valid users - return 204"""
     expected_staus_code = 204
     test_cases = [
         ("John", date(1990, 1, 1)),
@@ -131,6 +138,7 @@ def test_put_username_valid():
 # - string with numbers
 # - string with emoji
 def test_put_username_invalid():
+    """Test the put username path with invalid users - return 422"""
     expected_staus_code = 422
     expected_message = "String should match pattern '^[a-zA-Z]+$'"
     test_cases = [
@@ -162,6 +170,7 @@ def test_put_username_invalid():
 
 # receive an username bigger than 100 characters - return 422
 def test_put_username_big100():
+    """Test the put username path with users bigger than 100 characters - return 422"""
     expected_staus_code = 422
     expected_message = "Username should have at most 100 characters"
     test_cases = [
@@ -193,6 +202,7 @@ def test_put_username_big100():
 # - date of date bigger than today
 # - date of a date with year less than 9999
 def test_put_date_of_birth_invalid():
+    """Test the put username path with invalid date of birth - return 422"""
     expected_staus_code = 422
     test_cases = [
         ("".join(choices(ascii_letters, k=randrange(100, 10000))), date(1990, 1, 1))

@@ -12,6 +12,7 @@ DEFAULT_DB = {
 
 
 def bootstrap_db():
+    """Create the schema and table if they don't exist and insert a user if it doesn't exist"""
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -29,6 +30,7 @@ def bootstrap_db():
 
 
 def get_db_connection():
+    """Return a connection to the database"""
     conn = psycopg.connect(
         f"host={os.getenv('APP_DB_HOST', DEFAULT_DB['host'])} port={os.getenv('APP_DB_PORT', DEFAULT_DB['port'])} dbname={os.getenv('APP_DB_NAME', DEFAULT_DB['name'])} user={os.getenv('APP_DB_USER', DEFAULT_DB['user'])} password={os.getenv('APP_DB_PASSWORD', DEFAULT_DB['password'])}",
         autocommit=True,

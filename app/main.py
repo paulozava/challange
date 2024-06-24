@@ -9,6 +9,7 @@ from fastapi import Body, FastAPI, HTTPException, Path, status
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """Create the database schema if not done yet before the application starts"""
     bootstrap_db()
     yield
 
@@ -18,6 +19,7 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get("/-/all")
 def get_all_users():
+    """/-/all - GET - return all the users in the database"""
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT * FROM hello.usernames")
@@ -27,6 +29,7 @@ def get_all_users():
 
 @app.get("/-/health")
 def get_health():
+    """/-/health - GET - return 200 status ok as a healthcheck"""
     return {"status": "ok"}
 
 
@@ -41,7 +44,7 @@ def get_hello(
         ),
     ]
 ):
-
+    """/hello/{username} - GET - return a message with the number of days until the user's birthday or a happy birthday message"""
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -80,6 +83,7 @@ def put_hello(
     ],
     dateOfBirth: Annotated[DateOfBirth, Body(embed=False)],
 ):
+    """/hello/{username} - PUT - Add a new user or update the date of birth of an existing user"""
     if len(username) > 100:
         raise HTTPException(
             status_code=422,
