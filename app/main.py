@@ -84,7 +84,7 @@ def put_hello(
             pattern="^[a-zA-Z]+$",
         ),
     ],
-    dateOfBirth: Annotated[DateOfBirth, Body(embed=False)],
+    date_of_birth: Annotated[DateOfBirth, Body(embed=False)],
 ):
     """/hello/{username} - PUT - Add a new user or update the date of birth of an existing user"""
     if len(username) > 100:
@@ -96,5 +96,5 @@ def put_hello(
         with conn.cursor() as cur:
             cur.execute(
                 "INSERT INTO hello.usernames (username, dateOfBirth) VALUES (%s, %s) ON CONFLICT (username) DO UPDATE SET dateOfBirth = EXCLUDED.dateOfBirth",
-                (username, dateOfBirth.dateOfBirth),
+                (username, date_of_birth.dateOfBirth),
             )
