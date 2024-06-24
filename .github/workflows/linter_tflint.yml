@@ -35,3 +35,8 @@ jobs:
 
       - name: Run TFLint
         run: tflint -f compact
+
+      - name: Check if Terraform is formated correctly
+        run: |
+          tffmt=$(terraform fmt --recursive --check .)
+          if [[ ! -z "$tffmt" ]]; then echo "Missing formating on code, run terraform fmt --recursive . on files:\n\n$tffmt"; fi
