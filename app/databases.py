@@ -1,3 +1,5 @@
+"""Database utilities for the application"""
+
 import os
 
 import psycopg

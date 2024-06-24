@@ -1,3 +1,5 @@
+"""Models for check data used by application endpoints."""
+
 from pydantic import BaseModel, Field, PastDate
 
 

@@ -1,10 +1,13 @@
+"""Main module of the application with the HTTP endpoints of the application"""
+
 from contextlib import asynccontextmanager
 from datetime import date
 from typing import Annotated
 
+from fastapi import Body, FastAPI, HTTPException, Path, status
+
 from app.databases import bootstrap_db, get_db_connection
 from app.models import DateOfBirth
-from fastapi import Body, FastAPI, HTTPException, Path, status
 
 
 @asynccontextmanager
