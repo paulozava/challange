@@ -1,4 +1,4 @@
-name: "Linter: tflint"
+name: "Terraform: Linter and Fmt"
 on: [push]
 
 jobs:
