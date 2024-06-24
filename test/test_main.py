@@ -192,7 +192,7 @@ def test_put_username_big100():
 # - date with emoji
 # - date of date bigger than today
 # - date of a date with year less than 9999
-def test_put_dateOfBirth():
+def test_put_date_of_birth_invalid():
     expected_staus_code = 422
     test_cases = [
         ("".join(choices(ascii_letters, k=randrange(100, 10000))), date(1990, 1, 1))

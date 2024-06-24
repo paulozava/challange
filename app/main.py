@@ -56,9 +56,9 @@ def get_hello(
             detail="We have more than one user with the same username, I will prepare a tea and we can try again",
         )
     else:
-        _, username, dateOfBirth = tuple(user[0])
+        _, username, date_of_birth = tuple(user[0])
         birthday_delta = date.today() - date(
-            date.today().year, dateOfBirth.month, dateOfBirth.day
+            date.today().year, date_of_birth.month, date_of_birth.day
         )
         if birthday_delta.days == 0:
             return {"message": f"Hello, {username}! Happy birthday!"}
