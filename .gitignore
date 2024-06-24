@@ -172,3 +172,4 @@ infrastructure/.terraform/modules
 terraform.tfstate
 terraform.tfstate.backup
 .terraform.tfstate.lock.info
+.DS_Store
