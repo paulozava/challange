@@ -18,8 +18,10 @@ module "ecs_template_service" {
   name        = var.name
   cluster_arn = aws_ecs_cluster.app.arn
 
-  cpu                    = 1024
-  memory                 = 4096
+  cpu    = 1024
+  memory = 4096
+
+  desired_count          = 3
   enable_execute_command = true
 
   container_definitions = {
