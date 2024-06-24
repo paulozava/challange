@@ -28,4 +28,5 @@ jobs:
       - name: Test code with pytest
         run: |
           docker-compose up -d postgres
+          sleep 10
           pytest -vv
