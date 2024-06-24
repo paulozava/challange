@@ -16,14 +16,14 @@ services:
       - ./app:/app
     command:
       ["fastapi", "dev", "main.py", "--port", "8080", "--host", "0.0.0.0"]
-    develop:
-      watch:
-        - action: rebuild
-          path: Pipfile
-        - action: rebuild
-          path: Dockerfile
-        - action: rebuild
-          path: docker-compose.yaml
+    # develop:
+    #   watch:
+    #     - action: rebuild
+    #       path: Pipfile
+    #     - action: rebuild
+    #       path: Dockerfile
+    #     - action: rebuild
+    #       path: docker-compose.yaml
   test:
     build: .
     container_name: test
@@ -44,11 +44,11 @@ services:
         sleep 5
         pytest -vv ./test
         sleep 1000000
-    develop:
-      watch:
-        - action: sync+restart
-          path: ./app
-          target: /app
+    # develop:
+    #   watch:
+    #     - action: sync+restart
+    #       path: ./app
+    #       target: /app
   postgres:
     image: postgres:13.3
     container_name: postgres

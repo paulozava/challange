@@ -1,4 +1,4 @@
-name: Python package
+name: "Python: Lint and Test"
 
 on: [push]
 
@@ -22,8 +22,6 @@ jobs:
           pip install pylint pipenv
           pipenv requirements > requirements.txt
           pip install -r requirements.txt
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          sudo sh get-docker.sh
       - name: Analysing the code with pylint
         run: |
           pylint $(git ls-files '*.py') --output-format colorized --disable=C0301 --disable=E1129 --disable=R1720 --disable=C0411 --disable=W1508 --disable=W0621 --disable=W0613 --disable=R1705 --disable=C0115
