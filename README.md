@@ -48,7 +48,45 @@
 2. The solution must have tests, runnable locally, and deployable to the cloud.
 3. Use common sense.
 
-## Decision log
+## Solution
+
+### How to run
+
+#### Requirements
+
+- Docker
+- Docker Compose
+- Terraform (for AWS deployment)
+- AWS CLI (for AWS deployment)
+
+#### Local
+
+use the following command to run the application locally:
+
+```bash
+docker compose up
+```
+
+if you need to run tests, use the following command:
+
+```bash
+docker compose restart -t 10 test
+```
+
+#### AWS
+
+use the following command on the root of the folder to deploy the application to AWS:
+
+```bash
+terraform init
+terraform apply
+```
+
+#### Commands
+
+### System Diagram
+
+### Decision log
 
 - **Python**: Python is a common language nowadays, almost all SRE/DevOps professional knows at least the basics of it. This widespread familiarity will facilitate the improvement and maintenance of the code.
 
@@ -78,7 +116,9 @@
 
 - **ECS**: I chose ECS because it is a managed service with good performance and scalability. Additionally, it is easy to integrate with Application Load Balancer (ALB).
 
-## TODO
+- **Release the code with terraform**: My idea here is to have a simple way to deploy the infra stack and test the application. I decide to not add an pipeline step to this because I simply do not know anything about your infra. In a production environment, the code should be released with a CI/CD pipeline.
+
+### TODO
 
 - [x] Create a local database:
   - [x] Create table hello with the fields:
