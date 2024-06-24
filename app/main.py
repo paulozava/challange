@@ -2,10 +2,9 @@ from contextlib import asynccontextmanager
 from datetime import date
 from typing import Annotated
 
-from fastapi import Body, FastAPI, HTTPException, Path, status
-
 from app.databases import bootstrap_db, get_db_connection
 from app.models import DateOfBirth
+from fastapi import Body, FastAPI, HTTPException, Path, status
 
 
 @asynccontextmanager
@@ -65,7 +64,7 @@ def get_hello(
             return {"message": f"Hello, {username}! Happy birthday!"}
         else:
             return {
-                "message": f"Hello, {username}! Your birthday is in {birthday_delta.days} day{'' if birthday_delta.days == 1 else 's'}!",
+                "message": f"Hello, {username}! Your birthday is in {birthday_delta.days} day{'' if birthday_delta.days == 1 else 's'}",
             }
 
 

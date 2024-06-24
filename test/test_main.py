@@ -4,9 +4,8 @@ from datetime import date
 from random import choices, randrange
 from string import ascii_letters
 
-from fastapi.testclient import TestClient
-
 from app.main import app
+from fastapi.testclient import TestClient
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../app")))
 client = TestClient(app)
@@ -41,7 +40,7 @@ def test_get_username_success_found():
                 date.today().year, date_of_birth.month, date_of_birth.day
             )
             assert r == {
-                "message": f"Hello, {username}! Your birthday is in {birthday_delta.days} days!"
+                "message": f"Hello, {username}! Your birthday is in {birthday_delta.days} day{'' if birthday_delta.days == 1 else 's'}",
             }
 
 

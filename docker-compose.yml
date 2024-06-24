@@ -41,6 +41,7 @@ services:
       - /bin/bash
       - -c
       - |
+        sleep 5
         pytest -vv ./test
         sleep 1000000
     develop:
