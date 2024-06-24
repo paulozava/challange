@@ -84,6 +84,19 @@ terraform apply
 
 #### Commands
 
+```bash
+How to access your site:
+
+To add an user:
+curl -X PUT -v -k https://site/hello/<username> -H "Content-Type: application/json" -d '{"dateOfBirth": "1990-01-01"}'
+
+To get the user:
+curl -v -k https://site/hello/<username>
+
+To get all usernames at database:
+curl -v -k https://site/-/all
+```
+
 ### System Diagram
 
 ![Infra](https://github.com/paulozava/challange/blob/main/schema/schema.jpg "infrastructure schema")
